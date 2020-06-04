@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report Version="2.0" Name="Detailed RCN Report" Layer="True" TOCField="" DatasetMode="0" StartingPageNumber="1">
+	<DataSource Name="Watershed1_RCN" BrowseName="Watershed1_RCN" Type="5" FullName="">
+		<Workspace WorkspaceType="1" PathName="C:\Workspace\Eng_Tests_2\Eng_Tests_2_EngTools.gdb">
+			<Property Name="DATABASE" Value="C:\Workspace\Eng_Tests_2\Eng_Tests_2_EngTools.gdb" />
+		</Workspace>
+	</DataSource>
+	<SourceFields>
+		<Field Name="OBJECTID" SafeName="OBJECTID" Type="6" SortAsc="True" />
+		<Field Name="SUB_BASIN" SafeName="SUB_BASIN" Type="1" SortAsc="True" />
+		<Field Name="LANDUSE" SafeName="LANDUSE" Type="4" SortAsc="True" />
+		<Field Name="CONDITION" SafeName="CONDITION" Type="4" SortAsc="True" />
+		<Field Name="HYDROLGROUP" SafeName="HYDROLGROUP" Type="4" SortAsc="True" />
+		<Field Name="RCN" SafeName="RCN" Type="1" SortAsc="True" />
+		<Field Name="ACRES" SafeName="ACRES" Type="3" SortAsc="True" />
+		<Field Name="Shape_Length" SafeName="Shape_Length" Type="3" SortAsc="True" />
+		<Field Name="Shape_Area" SafeName="Shape_Area" Type="3" SortAsc="True" />
+	</SourceFields>
+	<ReportFields>
+		<Field Name="SUB_BASIN" />
+		<Field Name="LANDUSE" />
+		<Field Name="CONDITION" />
+		<Field Name="HYDROLGROUP" />
+		<Field Name="ACRES" />
+		<Field Name="RCN" />
+	</ReportFields>
+	<GroupFields>
+		<Field Name="SUB_BASIN" />
+	</GroupFields>
+	<SortFields>
+		<Field Name="LANDUSE" />
+		<Field Name="CONDITION" />
+		<Field Name="HYDROLGROUP" />
+	</SortFields>
+	<ReportStyle Name="Havelock" UserStyle="False">
+		<SectionStyle Type="0">
+			<Font Size="20.25" Style="Bold" Color="#575F6D">Century Schoolbook</Font>
+		</SectionStyle>
+		<SectionStyle Type="1" Lines="1" LinesColor="#FF7D26">
+			<Font Size="9" Style="Regular" Color="#000000">Century Schoolbook</Font>
+		</SectionStyle>
+		<SectionStyle Type="2" Lines="1" LinesColor="#000001">
+			<Font Size="9" Style="Bold" Color="#FF7D26">Century Schoolbook</Font>
+		</SectionStyle>
+		<DetailSectionStyle Type="3" BackColor="LemonChiffon" AlternateColor="PapayaWhip">
+			<Font Size="9" Style="Regular" Color="#000000">Century Schoolbook</Font>
+		</DetailSectionStyle>
+		<SectionStyle Type="4">
+			<Font Size="8.25" Style="Bold" Color="DarkOrange">Century Schoolbook</Font>
+		</SectionStyle>
+		<SectionStyle Type="5">
+			<Font Size="8" Style="Regular" Color="Gray">Century Schoolbook</Font>
+		</SectionStyle>
+		<SectionStyle Type="6">
+			<Font Size="8" Style="Regular" Color="Gray">Century Schoolbook</Font>
+		</SectionStyle>
+	</ReportStyle>
+	<ActiveReportsLayout Version="3.1" PrintWidth="9360" DocumentName="ARNet Document" ScriptLang="C#" MasterReport="0">
+		<StyleSheet>
+			<Style Name="Normal" Value="font-family: Arial; font-style: normal; text-decoration: none; font-weight: normal; font-size: 10pt; color: Black; " />
+			<Style Name="Heading1" Value="font-size: 16pt; font-weight: bold; " />
+			<Style Name="Heading2" Value="font-family: Times New Roman; font-size: 14pt; font-weight: bold; font-style: italic; " />
+			<Style Name="Heading3" Value="font-size: 13pt; font-weight: bold; " />
+		</StyleSheet>
+		<Sections>
+			<Section Type="ReportHeader" Name="ReportHeader" Height="781" BackColor="16777215">
+				<Control Type="AR.Label" Name="lblReportTitle" Left="0" Top="72" Width="6320" Height="640" Caption="Detailed RCN Report" Style="color: #575F6D; font-weight: bold; font-size: 20.25pt; font-family: Century Schoolbook; vertical-align: middle; " />
+			</Section>
+			<Section Type="PageHeader" Name="pageHeader" Height="360" BackColor="16777215">
+				<Control Type="AR.Label" Name="lblSUB_BASIN" Left="0" Top="0" Width="1080" Height="316.8" Caption="Sub-Basin" Style="color: #000000; font-size: 9pt; font-family: Century Schoolbook; white-space: nowrap; " />
+				<Control Type="AR.Label" Name="lblLANDUSE" Left="1080" Top="0" Width="3513.6" Height="360" Caption="Land Use" Style="color: #000000; text-align: center; font-size: 9pt; font-family: Century Schoolbook; white-space: nowrap; " />
+				<Control Type="AR.Label" Name="lblCONDITION" Left="4590" Top="0" Width="1267.2" Height="360" Caption="Condition" Style="color: #000000; text-align: center; font-size: 9pt; font-family: Century Schoolbook; white-space: nowrap; " />
+				<Control Type="AR.Label" Name="lblHYDROLGROUP" Left="5850" Top="0" Width="1170" Height="360" Caption="Hyd Group" Style="color: #000000; text-align: center; font-size: 9pt; font-family: Century Schoolbook; white-space: nowrap; " />
+				<Control Type="AR.Label" Name="lblACRES" Left="7020" Top="0" Width="1080" Height="360" Caption="Acres" Style="color: #000000; text-align: right; font-size: 9pt; font-family: Century Schoolbook; white-space: nowrap; " />
+				<Control Type="AR.Label" Name="lblRCN" Left="8084.506" Top="14.4" Width="1275.494" Height="320" Caption="RCN" Style="color: #000000; text-align: center; font-size: 9pt; font-family: Century Schoolbook; white-space: nowrap; " />
+				<Control Type="AR.Line" Name="styleLine1" X1="0" Y1="0" X2="9360" Y2="0" LineColor="2522623" />
+			</Section>
+			<Section Type="GroupHeader" Name="ghSUB_BASIN" Height="333" DataField="SUB_BASIN" BackColor="16777215">
+				<Control Type="AR.Field" Name="txtSUB_BASIN" DataField="SUB_BASIN" Left="0" Top="14.4" Width="1080" Height="316.8" Text="SUB_BASIN" Style="color: #FF7D26; text-align: left; font-weight: bold; font-size: 9pt; font-family: Century Schoolbook; " />
+				<Control Type="AR.Line" Name="styleLine2" X1="0" Y1="0" X2="9360" Y2="0" LineColor="65536" />
+			</Section>
+			<Section Type="Detail" Name="detail" Height="360" BackStyle="1" BackColor="13499135">
+				<Control Type="AR.Field" Name="txtLANDUSE" DataField="LANDUSE" Left="1080" Top="0" Width="3513.6" Height="360" Text="LANDUSE" Style="color: #000000; background-color: LemonChiffon; font-size: 9pt; font-family: Century Schoolbook; " />
+				<Control Type="AR.Field" Name="txtCONDITION" DataField="CONDITION" Left="4593.6" Top="0" Width="1267.2" Height="316.8" Text="CONDITION" Style="color: #000000; text-align: center; background-color: LemonChiffon; font-size: 9pt; font-family: Century Schoolbook; " />
+				<Control Type="AR.Field" Name="txtHYDROLGROUP" DataField="HYDROLGROUP" Left="5846.4" Top="0" Width="1166.4" Height="316.8" Text="HYDROLGROUP" Style="color: #000000; text-align: center; background-color: LemonChiffon; font-size: 9pt; font-family: Century Schoolbook; " />
+				<Control Type="AR.Field" Name="txtACRES" DataField="ACRES" Left="7027.2" Top="0" Width="1080" Height="316.8" Text="ACRES" OutputFormat="#,##0.00" Style="color: #000000; text-align: right; background-color: LemonChiffon; font-size: 9pt; font-family: Century Schoolbook; " />
+				<Control Type="AR.Field" Name="txtRCN" DataField="RCN" Left="8084.506" Top="0" Width="1275.494" Height="320" Text="RCN" Style="color: #000000; text-align: center; background-color: LemonChiffon; font-size: 9pt; font-family: Century Schoolbook; " />
+			</Section>
+			<Section Type="GroupFooter" Name="gfSUB_BASIN" Height="270" BackColor="16777215">
+				<Control Type="AR.Label" Name="lblSumACRES" Left="4860" Top="0" Width="2160" Height="270" Caption="Sub-Basin Total Acres:" Style="color: DarkOrange; text-align: right; font-weight: bold; font-size: 8.25pt; font-family: Century Schoolbook; " />
+				<Control Type="AR.Field" Name="txtSumACRES" DataField="ACRES" Left="7027.2" Top="0" Width="1080" Height="273.6" Text="ACRES" OutputFormat="#,##0.00" Style="color: DarkOrange; text-align: right; font-weight: bold; font-size: 8.25pt; font-family: Century Schoolbook; " SummaryType="3" SummaryGroup="ghSUB_BASIN" />
+			</Section>
+			<Section Type="PageFooter" Name="pageFooter" Height="299" BackColor="16777215">
+				<Control Type="AR.ReportInfo" Name="rptInfoPgNo" Left="1980" Top="0" Width="5400" Height="288" FormatString="Page {PageNumber} of {PageCount}" Style="color: Gray; text-align: center; font-size: 8pt; font-family: Century Schoolbook; " />
+			</Section>
+			<Section Type="ReportFooter" Name="ReportFooter" Height="0" BackColor="16777215" />
+		</Sections>
+		<PageSettings TopMargin="720" Orientation="1" />
+		<Parameters />
+	</ActiveReportsLayout>
+</Report>

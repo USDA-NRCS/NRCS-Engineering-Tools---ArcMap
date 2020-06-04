@@ -1,0 +1,202 @@
+============================================================================================================================
+NRCS GIS Engineering Tools
+============================================================================================================================
+A Python-based collection of tools for hydrologic and terrain-based analysis of high resolution elevation data ArcGIS.
+Previous versions of the tools may have produced incorrect results when using input DEM files with vertical units
+that did not match the horizontal units. It is recommended to upgrade to this version if practical to reduce these issues.
+
+Licensing:
+All tools function at the "Standard" (formerly ArcEditor) license level of ArcGIS except Estimate Pool from Contours.
+Estimate Pool from Contours requires the "Advanced" (formerly ArcInfo) license level of ArcGIS.
+The Spatial Analyst and 3D Analyst Extensions are required for many of the tools.
+
+Compatibility:
+Version 2.x: Compatible with ArcGIS 10.5 through ArcGIS 10.7. Written with arcpy.
+Version 1.x: Compatible with ArcGIS 9.3 through ArcGIS 10.6.1. Written with the 9.3 geoprocessor (gp).
+
+
+============================================================================================================================
+Installation
+============================================================================================================================
+No special or admin privileges are required, simply unzip the zip file to a local directory. 
+An "ENGINEERING_TOOLS" folder will be created in specified location. Within the ENGINEERING_TOOLS 
+folder there will be an "NRCS Engineering Tools.tbx" toolbox file and a "SUPPORT" folder. The support folder contains 
+the necessary scripts, files, and symbology layers, and must always reside in the same directory as the toolbox.
+
+Add to ArcMap:
+-----------------
+Enable the ArcToolbox window (if necessary), right click, and select "Add Toolbox".
+Browse to the location where the files were unzipped, then the "NRCS_GIS_ENGINEERING_TOOLS" folder within,
+and click once to select or highlight the NRCS Engineering Tools Toolbox, then click the "Open" button in the bottom 
+right hand corner of the dialog box.
+
+ArcMap Settings:
+-----------------
+Enable the Spatial and 3D Analyst extensions under the Customize > Extensions Menu (ArcGIS10) or the Tools >
+Extensions Menu (ArcGIS 9.3).
+
+Users should also go to the Tools > Options Menu, click on the Geoprocessing Tab, and make sure that both
+"Overwrite the outputs of Geoprocessing Operations" and "Add Results of geoprocessing operations" options are selected.
+"Results are temporary by default" should also be UN-CHECKED.  
+
+ArcMap Tempaltes:
+-----------------
+If you upgrade your operating system or ArcGIS version but have problems with these tools, the first
+suggested troubleshooting step is to create new template MXD files from scratch and try the tools again.
+
+
+============================================================================================================================
+DISCLAIMER
+============================================================================================================================
+While every effort has been made to strive for accuracy and reliability, NRCS cannot assume liability for any damages caused
+by any errors or omissions in the data, computations, or workflows, or as a result of the failure of the tools to function
+on a particular system. NRCS makes no warranty, expressed or implied, and the act of public distribution of this set of
+tools does not constitute such a warranty.   
+
+Users of these tools and other analysis products are solely responsible for interpretations made from these products. 
+
+
+============================================================================================================================
+SUPPORT
+============================================================================================================================
+Feel free to contact the developers if questions arise in the use of the tools or derived products.
+Please note, the following staff are not able to provide assistance on ESRI software or computer configuration issues and
+support of this toolset is outside of their normally assigned duties.
+
+Peter Mead				peter.mead@geogurus.com
+Adolfo Diaz, USDA NRCS			adolfo.diaz@usda.gov
+Chris Morse, USDA NRCS			chris.morse@usda.gov
+
+============================================================================================================================
+============================================================================================================================
+Change Log
+============================================================================================================================
+============================================================================================================================
+----------------------------------------------------------------------------------------------------------------------------
+Version 2.0
+
+-- Complete re-write of the toolbox from gp scripts to arcpy scripts.
+-- Made Vertical DEM Units a required parameter instead of an optional parameter in many scripts, to reduce chances of
+   incorrect results and conversions.
+-- Updated Create Contours From AOI to include the DEM layer in the outputs added to the map.
+-- Corrected units conversions, Z-factor settings, and volume computations for mismatched horizontal to vertical units in
+   many tools.
+-- Added PDF report output of RCN values to the Calculate Runoff Curve Number tool.
+-- Slight updates to some output layer symbology and labels for consistency.
+
+----------------------------------------------------------------------------------------------------------------------------
+Version 1.1.15a
+
+-- Adjusted the provided templates to use the Maplex labeling engine due to crashes on USDA systems when drawing contours
+
+----------------------------------------------------------------------------------------------------------------------------
+Version 1.1.15
+
+-- Minor alterations and debugging to improve compatibility with ArcGIS 10.5 and 10.6
+-- Fixed bug in CreatePoolAtDesiredElevation.py for pool height validation against DEM elevation ranges
+-- Made the z-Units parameter required in the Create Pool At Desired Elevation tool.
+
+----------------------------------------------------------------------------------------------------------------------------
+Ver 1.1.14a
+
+-- Several bug fixes and logic corrections to the WASCOB toolset scripts.
+-- Reset the Toolbox file version to ArcGIS 10.1/10.2 format to maintain backwards compatibility with ArcGIS 10.3.
+-- Fixed the profileXYZ.py tool to properly export text file in the Profile tools.
+
+----------------------------------------------------------------------------------------------------------------------------
+Ver 1.1.13
+-- Addressed a ArcMap 10.5.0 bug for longest flow path creation with RasterToPolyline conversion
+-- Fixed a bug in Create Pool at Desired Elevation when using a valid height specified by the user.
+-- Updated Create Pool at Desired Elevation to accept Foot_US for linear units of input DEM.
+-- Added a Calibrate DEM script written by Peter Mead to the WASCOB toolset.
+	--This was still pending adoption of additional arcpy updates written by Peter to be placed in the WASCOB toolset.
+
+----------------------------------------------------------------------------------------------------------------------------
+Ver 1.1.12
+
+-- Fixed a bug in Average Slope so it runs with multiple input features including those with existing objectid fields.
+-- Added layer file symbology when loading the results of the Average Slope tool to the map.
+
+----------------------------------------------------------------------------------------------------------------------------
+Ver 1.1.11
+
+-- Re-ordered parameters for workspace, inputs, input options, AOI, outputs, output options in the following toolsets:
+	--Field Office Tools
+	--Practice Design Tools
+	--Watershed Tools
+	--Terrain Analysis Tools
+	--Utilities
+-- Updated numerous help tips in many of the tools
+-- Removed the Clip DEM to AOI tool from the Utilities toolbox as it was redundant to the same tool in Field Office Tools
+-- Added the Change Profile Coordinates (NAD83) tool to the Utilities --> Conversion Tools toolset.
+
+----------------------------------------------------------------------------------------------------------------------------
+Ver 1.1.10
+
+-- Updated and added Help files to some tools.
+-- Fixed a bug in the Utility Tools - Average Slope script that omitted a check for US Foot units of input DEM.
+-- Fixed a bug in Profile X,Y,Z script regarding write failure of optional text files (insert cursor changes).
+
+----------------------------------------------------------------------------------------------------------------------------
+Ver 1.1.9
+
+-- Fixed z-factors in several scripts that affected computations when input DEMs have x,y units differing from z units:
+	--Calculate_Average_Slope.py
+	--Calculate_Percent_Slope.py
+	--Create_Watershed.py
+	--updateWatershedAttributes.py
+	--caculateCTI.py
+	--calculateSPI.py
+-- Fixed minor typos in the comments of CalculateStageStorageVolume.py
+
+----------------------------------------------------------------------------------------------------------------------------
+Ver 1.1.8a
+
+-- Fixed bug in calculate_average_slope.py and calculate_percent_slope.py when input DEM has horizontal units of feet
+
+----------------------------------------------------------------------------------------------------------------------------
+Ver 1.1.8
+
+-- Fixed bug in mergeDEMs.py and mergeVectorData.py to better handle clean up of temporarily clipped layers when finished.
+-- Assigned an appropriate Snap Raster setting to many scripts to improve consistency of horizontal positions in outputs.
+-- Added ability for mergeDEMs.py and mergeVectorData.py to handle spaces in Table of Contents based layer names.
+
+----------------------------------------------------------------------------------------------------------------------------
+Ver 1.1.7
+
+-- Added lost ClipDEM.py script that was inadvertantly left out of ver 1.1.6
+-- Added Sorting to profileXYZ.py to sort records by station prior to writing to Feature Class and txt.
+-- Fixed bug in calculateSPI.py threshold conversions when using DEM with XY Units in FT.
+
+----------------------------------------------------------------------------------------------------------------------------
+Ver 1.1.6
+
+-- Added Validation to all tools requiring a Workspace
+-- Tools will not execute if there is a path or special character in a user defined workspace
+-- Fixed bug in PrepareSoilsAndLanduse that prevented results from adding to map if blank hydro groups appeared in soils 
+
+----------------------------------------------------------------------------------------------------------------------------
+Ver 1.1.5
+
+-- Addition of Terrain Attribute Tools for Creating SPI, CTI, and TPI
+-- Fixed bug in contours by AOI that caused a failure when calculating AOI area when input XY units are in feet
+-- Fixed bug in Create Watershed/Wascob that was causing a hard crash when dissolving on some workstations
+-- Fixed bug in Create Watershed for occasional issues with creating flow paths
+-- Fixed bug in Wascob Add Points to Profile regarding adding Z values to appended points
+
+----------------------------------------------------------------------------------------------------------------------------
+Ver 1.1.4
+
+-- Estimate Pool From Contours -- Addressed unit conversion issue when calculating pool area.
+
+----------------------------------------------------------------------------------------------------------------------------
+Ver 1.1.3
+
+-- Create Watershed / Wascob Watershed: Code changed to accommodate raster to polygon conversion issues in Arc 10.1.
+-- Create Watershed / Wascob Watershed: Updated version checking.
+-- Prepare Soils and Landuse: Added detect and delete of existing domains to correct bug when re-running after user edits.
+-- Prepare Soils and Landuse: Added detection / renaming of landuse if NLCD RCN tool was previously applied to watershed.
+-- Wascob Attributes: Added detection and deletion of existing domains to correct bug in re-execution after user edits.
+-- Wascob Watershed: Fixed an error in Z factor variable for slope calculations.
+-- Calculate RCN from NLCD: Delete existing domains in soils if event CN already calculated with the vector based tools.
+-- Calculate RCN from NLCD: Overwrites (instead of delete) was causing a hard crash if the domain existed.

@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report Version="2.0" Name="Sub-Basin RCN Report" Layer="True" TOCField="" DatasetMode="0" StartingPageNumber="1">
+	<DataSource Name="Watershed1" BrowseName="Watershed1" Type="5" FullName="">
+		<Workspace WorkspaceType="1" PathName="C:\Workspace\Eng_Tests_2\Eng_Tests_2_EngTools.gdb">
+			<Property Name="DATABASE" Value="C:\Workspace\Eng_Tests_2\Eng_Tests_2_EngTools.gdb" />
+		</Workspace>
+	</DataSource>
+	<SourceFields>
+		<Field Name="OBJECTID" SafeName="OBJECTID" Type="6" SortAsc="True" />
+		<Field Name="Shape_Length" SafeName="Shape_Length" Type="3" SortAsc="True" />
+		<Field Name="Shape_Area" SafeName="Shape_Area" Type="3" SortAsc="True" />
+		<Field Name="Subbasin" SafeName="Subbasin" Type="1" SortAsc="True" />
+		<Field Name="Acres" SafeName="Acres" Type="3" SortAsc="True" />
+		<Field Name="Avg_Slope" SafeName="Avg_Slope" Type="3" SortAsc="True" />
+		<Field Name="RCN" SafeName="RCN" Type="1" SortAsc="True" />
+	</SourceFields>
+	<ReportFields>
+		<Field Name="Subbasin" />
+		<Field Name="Acres" />
+		<Field Name="Avg_Slope" />
+		<Field Name="RCN" />
+	</ReportFields>
+	<GroupFields>
+		<Field Name="Subbasin" />
+	</GroupFields>
+	<ReportStyle Name="Havelock" UserStyle="False">
+		<SectionStyle Type="0">
+			<Font Size="20.25" Style="Bold" Color="#575F6D">Century Schoolbook</Font>
+		</SectionStyle>
+		<SectionStyle Type="1" Lines="1" LinesColor="#FF7D26">
+			<Font Size="9" Style="Regular" Color="#000000">Century Schoolbook</Font>
+		</SectionStyle>
+		<SectionStyle Type="2" Lines="1" LinesColor="#000001">
+			<Font Size="9" Style="Bold" Color="#FF7D26">Century Schoolbook</Font>
+		</SectionStyle>
+		<DetailSectionStyle Type="3" BackColor="LemonChiffon" AlternateColor="PapayaWhip">
+			<Font Size="9" Style="Regular" Color="#000000">Century Schoolbook</Font>
+		</DetailSectionStyle>
+		<SectionStyle Type="4">
+			<Font Size="8.25" Style="Bold" Color="DarkOrange">Century Schoolbook</Font>
+		</SectionStyle>
+		<SectionStyle Type="5">
+			<Font Size="8" Style="Regular" Color="Gray">Century Schoolbook</Font>
+		</SectionStyle>
+		<SectionStyle Type="6">
+			<Font Size="8" Style="Regular" Color="Gray">Century Schoolbook</Font>
+		</SectionStyle>
+	</ReportStyle>
+	<ActiveReportsLayout Version="3.1" PrintWidth="9360" DocumentName="ARNet Document" ScriptLang="C#" MasterReport="0">
+		<StyleSheet>
+			<Style Name="Normal" Value="font-family: Arial; font-style: normal; text-decoration: none; font-weight: normal; font-size: 10pt; color: Black; " />
+			<Style Name="Heading1" Value="font-size: 16pt; font-weight: bold; " />
+			<Style Name="Heading2" Value="font-family: Times New Roman; font-size: 14pt; font-weight: bold; font-style: italic; " />
+			<Style Name="Heading3" Value="font-size: 13pt; font-weight: bold; " />
+		</StyleSheet>
+		<Sections>
+			<Section Type="ReportHeader" Name="ReportHeader" Height="781" BackColor="16777215">
+				<Control Type="AR.Label" Name="lblReportTitle" Tag="" Left="0" Top="72" Width="6800" Height="640" Caption="Sub-Basin RCN Report" Style="color: #575F6D; font-weight: bold; font-size: 20.25pt; font-family: Century Schoolbook; vertical-align: middle; " />
+			</Section>
+			<Section Type="PageHeader" Name="pageHeader" Height="334" BackColor="16777215">
+				<Control Type="AR.Label" Name="lblSubbasin" Tag="" Left="0" Top="14.4" Width="1440" Height="320" Caption="Sub-Basin" Style="color: #000000; font-size: 9pt; font-family: Century Schoolbook; white-space: nowrap; " />
+				<Control Type="AR.Label" Name="lblAcres" Tag="" Left="1441.44" Top="14.4" Width="1440" Height="320" Caption="Acres" Style="color: #000000; text-align: right; font-size: 9pt; font-family: Century Schoolbook; white-space: nowrap; " />
+				<Control Type="AR.Label" Name="lblAvg_Slope" Tag="" Left="2882.88" Top="14.4" Width="1440" Height="320" Caption="Avg Slope" Style="color: #000000; text-align: center; font-size: 9pt; font-family: Century Schoolbook; white-space: nowrap; " />
+				<Control Type="AR.Label" Name="lblRCN" Tag="" Left="4324.32" Top="14.4" Width="1440" Height="320" Caption="RCN" Style="color: #000000; text-align: center; font-size: 9pt; font-family: Century Schoolbook; white-space: nowrap; " />
+				<Control Type="AR.Line" Name="styleLine1" Tag="" X1="0" Y1="0" X2="9360" Y2="0" LineColor="2522623" />
+			</Section>
+			<Section Type="GroupHeader" Name="ghSubbasin" Height="334" DataField="Subbasin" BackColor="16777215">
+				<Control Type="AR.Field" Name="txtSubbasin" DataField="Subbasin" Left="0" Top="14.4" Width="1440" Height="320" Text="1" Style="color: #FF7D26; text-align: left; font-weight: bold; font-size: 9pt; font-family: Century Schoolbook; " />
+				<Control Type="AR.Line" Name="styleLine2" X1="0" Y1="0" X2="9360" Y2="0" LineColor="65536" />
+			</Section>
+			<Section Type="Detail" Name="detail" Height="320" BackStyle="1" BackColor="13499135">
+				<Control Type="AR.Field" Name="txtAcres" DataField="Acres" Left="1440" Top="0" Width="1440" Height="320" Text="35.36" OutputFormat="#,##0.00" Style="color: #000000; text-align: right; background-color: LemonChiffon; font-size: 9pt; font-family: Century Schoolbook; " />
+				<Control Type="AR.Field" Name="txtAvg_Slope" DataField="Avg_Slope" Left="2882.88" Top="0" Width="1440" Height="320" Text="2.8" OutputFormat="#,##0.0" Style="color: #000000; text-align: center; background-color: LemonChiffon; font-size: 9pt; font-family: Century Schoolbook; " />
+				<Control Type="AR.Field" Name="txtRCN" DataField="RCN" Left="4324.32" Top="0" Width="1440" Height="320" Text="RCN" Style="color: #000000; text-align: center; background-color: LemonChiffon; font-size: 9pt; font-family: Century Schoolbook; " />
+			</Section>
+			<Section Type="GroupFooter" Name="gfSubbasin" Height="0" BackColor="16777215" />
+			<Section Type="PageFooter" Name="pageFooter" Height="299" BackColor="16777215">
+				<Control Type="AR.ReportInfo" Name="rptInfoPgNo" Tag="" Left="1980" Top="0" Width="5400" Height="288" FormatString="Page {PageNumber} of {PageCount}" Style="color: Gray; text-align: center; font-size: 8pt; font-family: Century Schoolbook; " />
+			</Section>
+			<Section Type="ReportFooter" Name="ReportFooter" Height="0" BackColor="16777215" />
+		</Sections>
+		<ReportComponentTray />
+		<PageSettings TopMargin="720" Orientation="1" />
+		<Parameters />
+	</ActiveReportsLayout>
+</Report>
