@@ -54,10 +54,10 @@ def logBasicSettings():
     f.write("User Parameters:\n")
     f.write("\tInput Watershed: " + inWatershed + "\n")
     f.write("\tWorkspace: " + userWorkspace + "\n")   
-    if len(outCoordsys) > 0:
-        f.write("\tOutput Coord Sys: " + outCoordsys + "\n")
-    else:
-        f.write("\tOutput Coord Sys: BLANK\n") 
+##    if len(outCoordsys) > 0:
+##        f.write("\tOutput Coord Sys: " + outCoordsys + "\n")
+##    else:
+##        f.write("\tOutput Coord Sys: BLANK\n") 
         
     f.close
     del f   
@@ -116,9 +116,9 @@ try:
     
     # ------------------------ If lyrs present, clear any possible selections
     if arcpy.Exists(stations):
-        arpcy.SelectLayerByAttribute_management(stations, "CLEAR_SELECTION", "")
+        arcpy.SelectLayerByAttribute_management(stations, "CLEAR_SELECTION", "")
     if arcpy.Exists(rstations):
-        arpcy.SelectLayerByAttribute_management(rstations, "CLEAR_SELECTION", "")
+        arcpy.SelectLayerByAttribute_management(rstations, "CLEAR_SELECTION", "")
     if arcpy.Exists(tile):
         arcpy.SelectLayerByAttribute_management(tile, "CLEAR_SELECTION", "")
     if arcpy.Exists(ridge):

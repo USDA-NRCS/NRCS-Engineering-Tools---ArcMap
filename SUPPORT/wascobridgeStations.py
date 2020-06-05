@@ -321,7 +321,7 @@ try:
 
     x = 0
     for layer in layersToRemove:
-        if arcpy.exists(layer):
+        if arcpy.Exists(layer):
             if x == 0:
                 x+=1
             try:

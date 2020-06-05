@@ -154,7 +154,7 @@ try:
         sys.exit()
         
     # Check Addnt'l directories
-    if not arpcy.Exists(outputFolder):
+    if not arcpy.Exists(outputFolder):
         arcpy.CreateFolder_management(userWorkspace, "gis_output")
     if not arcpy.Exists(tables):
         arcpy.CreateFolder_management(outputFolder, "tables")

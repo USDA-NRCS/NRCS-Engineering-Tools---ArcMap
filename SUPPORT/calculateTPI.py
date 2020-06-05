@@ -174,7 +174,8 @@ try:
     # Subtract the original surface to create tpi
     AddMsgAndPrint("\tSubtracting original surface...",0)
     #gp.Minus_sa(smoothDEM, DEM_aoi, tpiOut)
-    tempMinus = arcpy.sa.Minus(smoothDEM, DEM_aoi)
+    #tempMinus = arcpy.sa.Minus(smoothDEM, DEM_aoi)
+    tempMinus = arcpy.sa.Minus(DEM_aoi, smoothDEM)
     tempMinus.save(tpiOut)
         
     AddMsgAndPrint("\n\tSuccessfully determined topographic cell positions...",0)

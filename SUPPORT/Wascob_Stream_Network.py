@@ -186,7 +186,7 @@ try:
                 x += 1
             try:
                 arcpy.Delete_management(dataset)
-                AddMsgAndPrint("\tDeleting....." + os.path.basename(dataset),0)
+                AddMsgAndPrint("\tDeleting..." + os.path.basename(dataset),0)
             except:
                 pass
     del datasetsToRemove, x

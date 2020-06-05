@@ -63,9 +63,6 @@ import arcpy, sys, os, string, traceback
 
 # Environment settings
 arcpy.env.overwriteOutput = True
-arcpy.env.geographicTransformations = "WGS_1984_(ITRF00)_To_NAD_1983"
-arcpy.env.resamplingMethod = "BILINEAR"
-arcpy.env.pyramid = "PYRAMIDS -1 BILINEAR DEFAULT 75 NO_SKIP"
 
 ### Version check
 ##version = str(arcpy.GetInstallInfo()['Version'])

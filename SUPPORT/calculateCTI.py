@@ -230,7 +230,7 @@ try:
     AddMsgAndPrint("\nCalculating Compound Topographic Index...",0)
     #gp.SingleOutputMapAlgebra_sa("Ln((\""+str(FlowAccum)+"\" + 0.001) / (\""+str(Slope)+"\" / 100 + 0.001))", ctiTemp)
 
-    # Updated formula (6/4/2020) is: ln(((flow accumulation + 1)*cellize)/(tan(slope))), where slope is in radians
+    # Updated formula (6/4/2020) to: ln(((flow accumulation + 1)*cellize)/(tan(slope))), where slope is in radians
 
     # Compute numerator
     ras1 = arcpy.sa.Raster(FlowAccum)

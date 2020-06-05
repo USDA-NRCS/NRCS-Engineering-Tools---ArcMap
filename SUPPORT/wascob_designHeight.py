@@ -219,10 +219,10 @@ try:
 
     #gp.ExtractByMask_sa(DEM_aoi, WSmask, DA_Dem)
     tempMask = arcpy.sa.ExtractByMask(DEM_aoi, WSmask)
-    tempMask.save(DA_DEM)
+    tempMask.save(DA_Dem)
     
     #gp.SetNull_sa(DA_Dem, DA_Dem, DA_sn, "VALUE > " + str(DesignElev))
-    tempNull = arcpy.sa.SetNull(DA_DEM, DA_DEM, "VALUE > " + str(DesignElev))
+    tempNull = arcpy.sa.SetNull(DA_Dem, DA_Dem, "VALUE > " + str(DesignElev))
     tempNull.save(DA_sn)
 
     #gp.Times_sa(DA_sn, "0", DAx0)

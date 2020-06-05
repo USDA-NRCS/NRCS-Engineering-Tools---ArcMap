@@ -291,20 +291,20 @@ try:
         # Calculate percent slope with proper Z Factor    
         AddMsgAndPrint("\tCalculating percent slope...",0)
         #gp.Slope_sa(smoothDEM, Slope, "PERCENT_RISE", Zfactor)
-        tempSlope = arcpy.sa.Slope(smoothDEM, "PERCENT_RISE", Zfactor)
+        tempSlope = arcpy.sa.Slope(smoothDEM, "DEGREE", Zfactor)
         tempSlope.save(Slope)
         
     else:
         AddMsgAndPrint("\nUsing existing slope grid " + str(os.path.basename(Slope)) + "",0)
                        
     # --------------------------------------------------------------------------------- Create and Filter Stream Power Index
-    # Calculate SPI
+    # Calculate SPI (formula updated to match ACPF and slope input changed to degrees, 6/5/2020)
     AddMsgAndPrint("\nCalculating Stream Power Index...",0)
     #gp.SingleOutputMapAlgebra_sa("Ln((\""+str(facFilt2)+"\" + 0.001) * (\""+str(Slope)+"\" / 100 + 0.001))", spiTemp)
     ras1 = arcpy.sa.Raster(facFilt2)
     ras2 = arcpy.sa.Raster(Slope)
-    ras3 = (ras1 + 0.001) * ((ras2 / 100) + 0.001)
-    tempSOMA = arcpy.sa.Ln(ras3)
+    Beta = arcpy.sa.Con(ras2, "0.001", ras2, "Value = 0")
+    tempSOMA = arcpy.sa.Ln((ras1 + 0.001) * Beta)
     tempSOMA.save(spiTemp)
     AddMsgAndPrint("\n\tFiltering index values...",0)
 
