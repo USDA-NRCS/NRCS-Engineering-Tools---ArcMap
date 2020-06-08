@@ -426,7 +426,7 @@ try:
         arcpy.MakeFeatureLayer_management(soilsLyr, "combinedLyr")
     
         # Select Combined Classes that intersect cultivated cropland
-        arcpy.SelectLayerByLocation("combinedLyr", "intersect", CULT_POLY, 0, "new_selection")
+        arcpy.SelectLayerByLocation_management("combinedLyr", "intersect", CULT_POLY, 0, "new_selection")
         count2 = int(arcpy.GetCount_management("combinedLyr").getOutput(0))
         if count2 > 0:
             AddMsgAndPrint("\tSetting " + str(count2) + " combined group(s) on cultivated land to drained state...",0)

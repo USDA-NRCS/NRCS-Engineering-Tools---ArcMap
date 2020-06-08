@@ -207,6 +207,7 @@ try:
         sr = desc.SpatialReference
         arcpy.CreateFeatureDataset_management(watershedGDB_path, "Layers", sr)
         del desc, sr
+        
     # --------------------------------------------------------------------------- Remove domains from fields if they exist
     desc = arcpy.Describe(watershedGDB_path)
     listOfDomains = []
@@ -215,12 +216,30 @@ try:
         listOfDomains.append(domain)
     del desc, domains
 
-    if "LandUse_Domain" in listOfDomains:
-        arcpy.RemoveDomainFromField_management(landuse, "LANDUSE")
-    if "Condition_Domain" in listOfDomains:
-        arcpy.RemoveDomainFromField_management(landuse, "CONDITION")
-    if "Hydro_Domain" in listOfDomains:
-        arcpy.RemoveDomainFromField_management(wsSoils, inputField)
+    if arcpy.Exists(landuse):
+        if "LandUse_Domain" in listOfDomains:
+            if len(arcpy.ListFields(landuse, "LANDUSE")) > 0:
+                my_field = arcpy.ListFields(landuse, "LANDUSE")[0]
+                if len(my_field.domain):
+                    if my_field.domain == "LandUse_Domain":
+                        arcpy.RemoveDomainFromField_management(landuse, "LANDUSE")
+                del my_field
+        if "Condition_Domain" in listOfDomains:
+            if len(arcpy.ListFields(landuse, "CONDITION")) > 0:
+                my_field = arcpy.ListFields(landuse, "CONDITION")[0]
+                if len(my_field.domain):
+                    if my_field.domain == "Condition_Domain":
+                        arcpy.RemoveDomainFromField_management(landuse, "CONDITION")
+                del my_field
+
+    if arcpy.Exists(wsSoils):
+        if "Hydro_Domain" in listOfDomains:
+            if len(arcpy.ListFields(wsSoils, inputField)) > 0:
+                my_field = arcpy.ListFields(wsSoils, inputField)[0]
+                if len(my_field.domain):
+                    if my_field.domain == "Hydro_Domain":
+                        arcpy.RemoveDomainFromField_management(wsSoils, inputField)
+                del my_field
         
     del listOfDomains
 
@@ -236,7 +255,7 @@ try:
     for layer in layersToRemove:
         if arcpy.Exists(layer):
             if x == 0:
-                AddMsgAndPrint("\nRemoving previous layers from your ArcMap session... " + watershedGDB_name ,1)
+                AddMsgAndPrint("\nRemoving previous layers from your ArcMap session... " + watershedGDB_name ,0)
                 x+=1
             try:
                 arcpy.Delete_management(layer)
@@ -253,7 +272,7 @@ try:
             if arcpy.Exists(layer):
                 # strictly for formatting
                 if x == 0:
-                    AddMsgAndPrint("\nRemoving old files from FGDB: " + watershedGDB_name ,1)
+                    AddMsgAndPrint("\nRemoving old files from FGDB: " + watershedGDB_name ,0)
                     x += 1
                 try:
                     arcpy.Delete_management(layer)
@@ -319,7 +338,7 @@ try:
         # Delete FID field
         fields = arcpy.ListFields(landuse,"FID*")
         for field in fields:
-            arcpy.Deletefield_management(landuse,field.name)
+            arcpy.DeleteField_management(landuse,field.name)
         del fields
 
         arcpy.Delete_management(watershedDissolve)
