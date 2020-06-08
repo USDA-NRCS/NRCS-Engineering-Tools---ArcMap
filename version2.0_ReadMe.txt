@@ -1,7 +1,7 @@
 ============================================================================================================================
 NRCS GIS Engineering Tools
 ============================================================================================================================
-A Python-based collection of tools for hydrologic and terrain-based analysis of high resolution elevation data ArcGIS.
+A Python-based collection of tools for hydrologic and terrain-based analysis of high-resolution elevation data in ArcGIS.
 Previous versions of the tools may have produced incorrect results when using input DEM files with vertical units
 that did not match the horizontal units. It is recommended to upgrade to this version if practical to reduce these issues.
 
@@ -62,6 +62,9 @@ SUPPORT
 Feel free to contact the developers if questions arise in the use of the tools or derived products.
 Please note, the following staff are not able to provide assistance on ESRI software or computer configuration issues and
 support of this toolset is outside of their normally assigned duties.
+
+Also, please report actual bugs at the following issues page on GitHub:
+https://github.com/USDA-NRCS/NRCS-Engineering-Tools---ArcMap/issues
 
 Peter Mead				peter.mead@geogurus.com
 Adolfo Diaz, USDA NRCS			adolfo.diaz@usda.gov
