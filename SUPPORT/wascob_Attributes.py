@@ -149,7 +149,7 @@ try:
 
     DEM_aoi = watershedGDB_path + os.sep + projectName + "_Raw_DEM"
     ProjectDEM = watershedGDB_path + os.sep + projectName + "_Project_DEM"
-    DEMsmooth = watershedGDB_path + os.sep + "_DEMsmooth"
+    DEMsmooth = watershedGDB_path + os.sep + projectName + "_DEMsmooth"
 
     # -------------------------------------------------------------------------- Permanent Datasets
     wsSoils = watershedFD + os.sep + wsName + "_Soils"

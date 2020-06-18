@@ -167,7 +167,7 @@ try:
     FlowAccum = watershedGDB_path + os.sep + "flowAccumulation"
     FlowDir = watershedGDB_path + os.sep + "flowDirection"
     DEM_aoi = watershedGDB_path + os.sep + projectName + "_Raw_DEM"
-    DEMsmooth = watershedGDB_path + os.sep + "_DEMsmooth"
+    DEMsmooth = watershedGDB_path + os.sep + projectName + "_DEMsmooth"
     ProjectDEM = watershedGDB_path + os.sep + projectName + "_Project_DEM"
     outletFC = watershedFD + os.sep + "ReferenceLine"
 
