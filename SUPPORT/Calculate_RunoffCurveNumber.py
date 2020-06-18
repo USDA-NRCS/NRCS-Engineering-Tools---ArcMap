@@ -94,6 +94,19 @@ try:
         arcpy.AddError("Exiting...")
         sys.exit()    
 
+    # Check for an edit session on the database before continuing. Users likely were editing just prior to running this script.
+    workspace = watershedGDB_path
+    edit = arcpy.da.Editor(workspace)
+    edit.startEditing(True, False)
+    try:
+        edit.stopEditing(False)
+    except:
+        del workspace, edit
+        arcpy.AddError("\nYou have an active edit session. Please stop editing and run this script again. Exiting...")
+        sys.exit()
+    del workspace, edit
+
+    # Continue defining variables
     watershedFD_path = watershedGDB_path + os.sep + "Layers"
     watershedGDB_name = os.path.basename(watershedGDB_path)
     userWorkspace = os.path.dirname(watershedGDB_path)
