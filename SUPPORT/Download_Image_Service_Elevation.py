@@ -73,6 +73,17 @@ try:
         if sr.type != "Projected":
             arcpy.AddError("\nSelected output coordinate system is not a projected coordinate system. Please try again. Exiting...")
             sys.exit()    
+
+    # Make sure workspace exists
+    if not arcpy.Exists(watershedGDB_path):
+        try:
+            arcpy.AddMessage("\nCreating geodatabase in workspace...")
+            arcpy.CreateFileGDB_management(userWorkspace, watershedGDB_name)
+            arcpy.CreateFeatureDataset_management(watershedGDB_path, "Layer", sr)
+            arcpy.AddMessage("\nSuccessfully created geodatabase in workspace...")
+        except:
+            arcpy.AddError("\nCould not create workspace. Remove special characters and spaces from the name. Exiting...")
+            sys.exit()
     
     # Re-project the AOI to WGS84 Geographic (EPSG WKID: 4326)
     arcpy.AddMessage("\nConverting input extent to WGS 1984...\n")
@@ -86,14 +97,16 @@ try:
     # Use the WGS 1984 AOI to clip/extract the DEM from the service
     arcpy.AddMessage("\nDownloading Data...\n")
     arcpy.SetProgressorLabel("Downloading Data. Please standby...")
-    aoi_ext = arcpy.Describe(wgs_AOI).extent
-    xMin = aoi_ext.XMin
-    yMin = aoi_ext.YMin
-    xMax = aoi_ext.XMax
-    yMax = aoi_ext.YMax
-    clip_ext = str(xMin) + " " + str(yMin) + " " + str(xMax) + " " + str(yMax)
-    ##arcpy.Clip_management(source_Service, clip_ext, WGS84_DEM, input_extent, "", "ClippingGeometry", "NO_MAINTAIN_EXTENT")
-    arcpy.Clip_management(source_Service, clip_ext, WGS84_DEM, wgs_AOI, "", "ClippingGeometry", "NO_MAINTAIN_EXTENT")
+    ##aoi_ext = arcpy.Describe(wgs_AOI).extent
+    ##xMin = aoi_ext.XMin
+    ##yMin = aoi_ext.YMin
+    ##xMax = aoi_ext.XMax
+    ##yMax = aoi_ext.YMax
+    ##clip_ext = str(xMin) + " " + str(yMin) + " " + str(xMax) + " " + str(yMax)
+    ##arcpy.Clip_management(source_Service, clip_ext, WGS84_DEM, input_extent, "", "ClippingGeometry", "NO_MAINTAIN_EXTENT") #### DO NOT USE
+    ##arcpy.Clip_management(source_Service, clip_ext, WGS84_DEM, wgs_AOI, "", "ClippingGeometry", "NO_MAINTAIN_EXTENT") #### USE
+    maskedDEM = arcpy.sa.ExtractByMask(source_Service, wgs_AOI)
+    maskedDEM.save(WGS84_DEM)
 
     # Project the WGS 1984 DEM to the coordinate system of the input extent OR override with the specified pcs
     # We use the factory code to get it
