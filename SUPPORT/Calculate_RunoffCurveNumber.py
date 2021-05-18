@@ -83,6 +83,7 @@ try:
     # ---------------------------------------------------------------------------- Define Variables
     # inWatershed can ONLY be a feature class
     watershed_path = arcpy.Describe(inWatershed).CatalogPath
+    watershed_name = os.path.basename(watershed_path)
 
     arcpy.AddMessage("Checking input watershed...")
     
@@ -140,7 +141,7 @@ try:
     TR_55_RCN_Lookup = os.path.join(os.path.dirname(sys.argv[0]), "Support.gdb" + os.sep + "TR_55_RCN_Lookup")
     
     # ---------------------------------------------------- Reports
-    reportPDF = userWorkspace + os.sep + inWatershed + " RCN Reports.pdf"
+    reportPDF = userWorkspace + os.sep + watershed_name + " RCN Reports.pdf"
     sb_PDF = userWorkspace + os.sep + "Sub-Basin Report.pdf"
     dr_PDF = userWorkspace + os.sep + "Detailed RCN Report.pdf"
     sb_rlf = os.path.join(os.path.dirname(sys.argv[0]), "subbasin_rcn_report.rlf")
@@ -590,7 +591,7 @@ try:
     # ----------------------------------------------------------- Generate PDF Reports of RCN Data in user workspace
     AddMsgAndPrint("\nCreating RCN PDF reports...",0)
 
-    reportPDF = arcpy.mapping.PDFDocumentCreate(reportPDF)
+    outPDF = arcpy.mapping.PDFDocumentCreate(reportPDF)
     
     # Subbasin RCN Report
     arcpy.MakeTableView_management(inWatershed, sb_table)
@@ -603,11 +604,11 @@ try:
     arcpy.mapping.ExportReport(tbl, dr_rlf, dr_PDF, "ALL", dr_title)
 
     # Assemble the final PDF report
-    reportPDF.appendPages(sb_PDF)
-    reportPDF.appendPages(dr_PDF)
+    outPDF.appendPages(sb_PDF)
+    outPDF.appendPages(dr_PDF)
 
     # Save and Close the report
-    reportPDF.saveAndClose()
+    outPDF.saveAndClose()
 
     # Delete the temporary tables and files
     arcpy.Delete_management(sb_table)
