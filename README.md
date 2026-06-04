@@ -1,4 +1,8 @@
 # NRCS-Engineering-Tools---ArcMap
+- **This repository has been archived and is no longer maintained.**
+- The code is provided for historical reference and may contain unpatched or unknown vulnerabilities.
+- It should **not** be used in production systems.
+
 USDA-NRCS Engineering Tools 2.x for ArcMap 10.x
 
 As of the last update to this readme file, this version is still in development as a conversion from previous 1.x versions developed in ArcGIS 9.3 and held together through legacy compatibility. The conversion is focused on converting code to arcpy, making corrections, and streamlining processing. This toolbox will be replaced by an ArcGIS Pro version and is simply intended as a legacy ArcMap version.
